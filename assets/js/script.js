@@ -96,16 +96,30 @@ var timeAudit = function() {
     // iterate over every timeblock and check conditions
     $(".col-10").each(function() {
         // set current time in 24 hr format
-        var currentTime = moment().format("HH")
+        var currentTime = moment().add(16, "hours").format("HH");
 
-        // grab timeblock id minus 'am' or 'pm'
-        timeBlock = $(this).attr("id").slice(0, 2)
+        // grab timeblock id in two digit format
+        timeBlock = $(this).attr("id")
 
-        // if current hour, display timeblock red
+        // if current hour, add present class to make red
+        if (currentTime === timeBlock) {
+            $(this).addClass("present");
+        }
         
+        // if past hour, add past class to make gray
+        else if (currentTime > timeBlock) {
+            $(this).addClass("past");
+        }
+        
+        // if future hour, add future class to make green
+        else if (currentTime < timeBlock) {
+            $(this).addClass("future");
+        }
     })
 
 }
 
 // load on page refresh
 loadText();
+
+timeAudit();
