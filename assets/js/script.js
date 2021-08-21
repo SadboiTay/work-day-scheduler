@@ -91,5 +91,21 @@ var loadText = function () {
     }
 }
 
+// check time and display colors
+var timeAudit = function() {
+    // iterate over every timeblock and check conditions
+    $(".col-10").each(function() {
+        // set current time in 24 hr format
+        var currentTime = moment().format("HH")
+
+        // grab timeblock id minus 'am' or 'pm'
+        timeBlock = $(this).attr("id").slice(0, 2)
+
+        // if current hour, display timeblock red
+        
+    })
+
+}
+
 // load on page refresh
 loadText();
