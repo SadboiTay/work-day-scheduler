@@ -54,14 +54,11 @@ var saveText = function(text, timeSlot) {
         timeSlot: timeSlot
     }
 
-    console.log(savedObj);
-
     // push to array
     saved.push(savedObj);
 
-    console.log(saved);
     // save to localStorage
-    
+    localStorage.setItem("saved", JSON.stringify(saved));
 }
     
 
