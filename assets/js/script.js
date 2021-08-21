@@ -37,32 +37,59 @@ $(".col-10").on("blur", "textarea", function() {
 
 // save button was clicked
 $("button").on("click", function() {
-    // grab time slot
-    var timeSlot = $(this).siblings(".col-10").attr('id');
+    // reset 'saved' array to empty
+    saved = [];
 
-    // grab text value
-    var text = $(this).siblings(".col-10").children("p").text();
+    // iterate over each time block to grab potential text data
+    $(".col-10").each(function() {
+        // grab text
+        var text = $(this).text().trim();
 
-    saveText(text, timeSlot);
+        // grab timeSlot 
+        var timeSlot = $(this).attr("id");
+        
+        // package into object
+        savedObj = {
+            text: text,
+            timeSlot: timeSlot
+        }
+        
+        // push to array
+        saved.push(savedObj);
+    })
+
+    saveText(saved);
 })
 
 // save function
-var saveText = function(text, timeSlot) {
-    // package into object
-    savedObj = {
-        text: text,
-        timeSlot: timeSlot
-    }
-
-    // push to array
-    saved.push(savedObj);
-
+var saveText = function(saved) {
     // save to localStorage
     localStorage.setItem("saved", JSON.stringify(saved));
 }
     
 
 // load function
+var loadText = function () {
     //  get from localStorage
+    loaded = JSON.parse(localStorage.getItem("saved"));
+    
+    // if nothing to load, make empty array
+    if (!loaded) {
+        saved = [];
+    }
+    
+    // loop through array and get each timeblock
+    for (var i = 0; i < loaded.length; i++) {
+        // grab text
+        var text = loaded[i].text
 
+        // grab timeSlot
+        var blockId = loaded[i].timeSlot
 
+        // target each timeblock according to timeslot id and load text
+        $("#"+blockId).children("p").text(text);
+
+    }
+}
+
+loadText();
