@@ -96,7 +96,7 @@ var timeAudit = function() {
     // iterate over every timeblock and check conditions
     $(".col-10").each(function() {
         // set current time in 24 hr format
-        var currentTime = moment().add(16, "hours").format("HH");
+        var currentTime = moment().format("HH");
 
         // grab timeblock id in two digit format
         timeBlock = $(this).attr("id")
@@ -116,7 +116,6 @@ var timeAudit = function() {
             $(this).addClass("future");
         }
     })
-
 }
 
 // load on page refresh
