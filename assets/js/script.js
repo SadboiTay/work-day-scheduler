@@ -40,7 +40,7 @@ $("button").on("click", function() {
     // reset 'saved' array to empty
     saved = [];
 
-    // iterate over each time block to grab potential text data
+    // iterate over each time block to grab data
     $(".col-10").each(function() {
         // grab text
         var text = $(this).text().trim();
@@ -75,7 +75,7 @@ var loadText = function () {
     
     // if nothing to load, make empty array
     if (!loaded) {
-        saved = [];
+        loaded = [];
     }
     
     // loop through array and get each timeblock
@@ -88,8 +88,8 @@ var loadText = function () {
 
         // target each timeblock according to timeslot id and load text
         $("#"+blockId).children("p").text(text);
-
     }
 }
 
+// load on page refresh
 loadText();
