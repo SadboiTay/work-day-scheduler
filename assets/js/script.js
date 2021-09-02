@@ -118,7 +118,10 @@ var timeAudit = function() {
     })
 }
 
+setInterval(timeAudit, 60000);
+
 // load on page refresh
 loadText();
 
+// run timeaudit on load to get color codes
 timeAudit();
